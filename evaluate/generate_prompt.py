@@ -1,4 +1,4 @@
-def generate_prompt(text, prompt_max_len, RAW_TEXT = False):
+def generate_prompt(text, prompt_max_len, RAW_TEXT=False):
     # truncate the text to the first "." before the prompt_max_length
     truncated_text = text[:prompt_max_len]
     # find last "." in the text
@@ -8,7 +8,6 @@ def generate_prompt(text, prompt_max_len, RAW_TEXT = False):
 
     if RAW_TEXT:
         return raw_text
-
 
     prompt = [
         {"role": "system", "content": "You are a skilled writer crafting an engaging story."},

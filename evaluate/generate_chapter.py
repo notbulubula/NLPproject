@@ -1,4 +1,4 @@
-def generate_chapter(prompt, tokenizer, model, pipe):
+def generate_chapter(prompt, pipe):
     generation_args = {
         "max_new_tokens": 500,
         "temperature": 0.9,

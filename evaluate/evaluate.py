@@ -1,4 +1,3 @@
-import pandas as pd
 import re
 
 
@@ -12,7 +11,8 @@ def get_named_entities(prompt, response, pipe):
 
     return prompt_setNE, response_setNE
 
-def get_NER_score(prompt_setNE, response_setNE, creativeness = 0.3):
+
+def get_NER_score(prompt_setNE, response_setNE, creativeness=0.3):
     # (1 - creativeness) is the weight of the importance of repeated named entities
     # creativeness is the weight of the importance of new named entities
 
@@ -32,6 +32,7 @@ def get_NER_score(prompt_setNE, response_setNE, creativeness = 0.3):
 
     return score
 
+
 def get_avg_std(text):
     # split the text into sentences
     sentences = re.split(r"\. |\! |\? ", text)
@@ -41,25 +42,24 @@ def get_avg_std(text):
     return mean, std
 
 
-def evaluate_text(prompt, response, pipe, creativeness = 0.3):
+def evaluate_text(prompt, response, pipe, creativeness=0.3):
     prompt_setNE, response_setNE = get_named_entities(prompt, response, pipe)
-    NERscore = get_NER_score(prompt_setNE, response_setNE, creativeness = creativeness)
+    NERscore = get_NER_score(prompt_setNE, response_setNE, creativeness=creativeness)
 
     prompt_mean, prompt_std = get_avg_std(prompt)
     response_mean, response_std = get_avg_std(response)
-
 
     prompt_num_dialogues = prompt.count('"')/2
     response_num_dialogues = response.count('"')/2
 
     return {
-        "prompt_NE" : prompt_setNE,
-        "response_NE" : response_setNE,
-        "NER_score" : NERscore,
-        "prompt_mean" : prompt_mean,
-        "prompt_std" : prompt_std,
-        "response_mean" : response_mean,
-        "response_std" : response_std,
-        "prompt_num_dialogues" : prompt_num_dialogues,
-        "response_num_dialogues" : response_num_dialogues
+        "prompt_NE": prompt_setNE,
+        "response_NE": response_setNE,
+        "NER_score": NERscore,
+        "prompt_mean": prompt_mean,
+        "prompt_std": prompt_std,
+        "response_mean": response_mean,
+        "response_std": response_std,
+        "prompt_num_dialogues": prompt_num_dialogues,
+        "response_num_dialogues": response_num_dialogues
     }
