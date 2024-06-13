@@ -4,7 +4,7 @@ from transformers import (AutoModelForTokenClassification,
                           pipeline)
 
 
-from evaluate.evaluate import get_named_entities, get_NER_score, get_avg_std, evaluate_text
+from evaluation.evaluate import get_named_entities, get_NER_score, get_avg_std, evaluate_text
 
 
 class TestCalculateScores(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
 
-from evaluate.generate_prompt import generate_prompt
+from evaluation.generate_prompt import generate_prompt
 
 
 class TestGeneratePrompt(unittest.TestCase):
