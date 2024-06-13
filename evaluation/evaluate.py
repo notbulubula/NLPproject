@@ -38,7 +38,7 @@ def get_avg_std(text):
     sentences = re.split(r"\. |\! |\? ", text)
     # calculate the mean and std of the sentence lengths
     mean = sum([len(x) for x in sentences]) / len(sentences)
-    std = sum([(len(x) - mean)**2 for x in sentences]) / len(sentences)
+    std = sum([(len(x) - mean) ** 2 for x in sentences]) / len(sentences)
     return mean, std
 
 
@@ -49,8 +49,8 @@ def evaluate_text(prompt, response, pipe, creativeness=0.3):
     prompt_mean, prompt_std = get_avg_std(prompt)
     response_mean, response_std = get_avg_std(response)
 
-    prompt_num_dialogues = prompt.count('"')/2
-    response_num_dialogues = response.count('"')/2
+    prompt_num_dialogues = prompt.count('"') / 2
+    response_num_dialogues = response.count('"') / 2
 
     return {
         "prompt_NE": prompt_setNE,
@@ -61,5 +61,5 @@ def evaluate_text(prompt, response, pipe, creativeness=0.3):
         "response_mean": response_mean,
         "response_std": response_std,
         "prompt_num_dialogues": prompt_num_dialogues,
-        "response_num_dialogues": response_num_dialogues
+        "response_num_dialogues": response_num_dialogues,
     }

@@ -9,7 +9,7 @@ def get_dataset_rows(dataset, config, split, num_rows):
     if response.status_code == 200:
         data = response.json()
         # The rows are under the 'rows' key
-        rows = data.get('rows', [])
+        rows = data.get("rows", [])
         # Extract the first `num_rows` rows
         return rows[:num_rows]
     else:
@@ -17,7 +17,7 @@ def get_dataset_rows(dataset, config, split, num_rows):
 
 
 def save_to_json_file(data, file_path):
-    with open(file_path, 'w') as json_file:
+    with open(file_path, "w") as json_file:
         json.dump(data, json_file, indent=2)
 
 
