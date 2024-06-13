@@ -18,6 +18,7 @@ class TestCalculateScores(unittest.TestCase):
 
     tokenizer: AutoTokenizer
     model: AutoModelForTokenClassification
+    pipe: pipeline
     prompt = "The Tom visited the Manhattan. The Jerry visited the Brooklyn."
     response = "The Tom visited the Manhattan. The Jerry visited the Brooklyn."
 
@@ -33,6 +34,9 @@ class TestCalculateScores(unittest.TestCase):
         cls.pipe = pipeline("ner", model=cls.model, tokenizer=cls.tokenizer)
 
     def test_get_named_entities(self) -> None:
+        """ 
+        Test the get_named_entities function.
+        """
         prompt_NE, response_NE = get_named_entities(
             self.prompt, self.response, self.pipe
         )
@@ -47,6 +51,9 @@ class TestCalculateScores(unittest.TestCase):
         self.assertIn("Brooklyn", response_NE)
 
     def test_get_NER_score(self) -> None:
+        """
+        Test the get_NER_score function.
+        """
         prompt_setNE = {
             "Tom",
             "Manhattan",
@@ -80,27 +87,33 @@ class TestCalculateScores(unittest.TestCase):
         self.assertEqual(score, 1.0)
 
     def test_get_avg_std(self) -> None:
+        """
+        Test the get_avg_std function.
+        """
         mean, std = get_avg_std(self.prompt)
 
         self.assertEqual(mean, 30.0)
         self.assertEqual(std, 1.0)
 
     def test_evaluate_text(self) -> None:
-        results = evaluate_text(self.prompt, self.response, self.pipe)
+        """
+        Test the evaluate_text function.
+        """
+        results_dict, prompt_NE, response_NE = evaluate_text(self.prompt, self.response, self.pipe)
 
         self.assertEqual(
-            results["prompt_NE"], {"Tom", "Manhattan", "Jerry", "Brooklyn"}
+            prompt_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"}
         )
         self.assertEqual(
-            results["response_NE"], {"Tom", "Manhattan", "Jerry", "Brooklyn"}
+            response_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"}
         )
-        self.assertEqual(round(results["NER_score"], 2), 0.91)
-        self.assertEqual(results["prompt_mean"], 30.0)
-        self.assertEqual(results["prompt_std"], 1.0)
-        self.assertEqual(results["response_mean"], 30.0)
-        self.assertEqual(results["response_std"], 1.0)
-        self.assertEqual(results["prompt_num_dialogues"], 0)
-        self.assertEqual(results["response_num_dialogues"], 0)
+        self.assertEqual(round(results_dict["NER_score"], 2), 0.91)
+        self.assertEqual(results_dict["prompt_mean"], 30.0)
+        self.assertEqual(results_dict["prompt_std"], 1.0)
+        self.assertEqual(results_dict["response_mean"], 30.0)
+        self.assertEqual(results_dict["response_std"], 1.0)
+        self.assertEqual(results_dict["prompt_num_dialogues"], 0)
+        self.assertEqual(results_dict["response_num_dialogues"], 0)
 
 
 if __name__ == "__main__":

@@ -12,6 +12,9 @@ class TestGeneratePrompt(unittest.TestCase):
     prompt_max_len = 200
 
     def test_generate_prompt_raw(self) -> None:
+        """
+        Test the generate_prompt function with RAW_TEXT=True.
+        """
         raw_text = generate_prompt(self.text, self.prompt_max_len, RAW_TEXT=True)
         self.assertEqual(
             raw_text,
@@ -19,6 +22,9 @@ class TestGeneratePrompt(unittest.TestCase):
         )
 
     def test_generate_prompt(self) -> None:
+        """
+        Test the generate_prompt function.
+        """
         prompt = generate_prompt(self.text, self.prompt_max_len)
         self.assertEqual(
             prompt,

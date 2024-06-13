@@ -1,4 +1,18 @@
-def generate_prompt(text, prompt_max_len, RAW_TEXT=False):
+from typing import List, Union
+
+
+def generate_prompt(text: str, prompt_max_len: int, RAW_TEXT: bool = False) -> Union[str, List[dict]]:
+    """
+    Generate a prompt for the user to continue the story.
+
+    Args:
+        text (str): The text to generate the prompt from.
+        prompt_max_len (int): The maximum length of the prompt.
+        RAW_TEXT (bool): If True, return raw text only.
+
+    Returns:
+        Union[str, List[dict]]: The generated prompt.
+    """
     # truncate the text to the first "." before the prompt_max_length
     truncated_text = text[:prompt_max_len]
     # find last "." in the text
