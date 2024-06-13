@@ -28,6 +28,10 @@ The dataset used in the project is the STORIES dataset from the Hugging Face lib
 
 https://huggingface.co/datasets/lucadiliello/STORIES
 
+To get the data run the following command inside evaluation directory:
+```bash
+python data_fetch.py
+```
 
 ## Testing
 
