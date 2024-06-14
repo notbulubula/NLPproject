@@ -1,7 +1,9 @@
 from typing import Callable
 
 
-def generate_chapter(prompt: str, max_new_tokens: int, pipe: Callable[..., list]) -> str:
+def generate_chapter(
+    prompt: str, max_new_tokens: int, pipe: Callable[..., list]
+) -> str:
     """
     Generate a new chapter based on the prompt.
 

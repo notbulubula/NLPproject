@@ -2,7 +2,9 @@ import re
 from typing import Callable, Dict, Set, Tuple, List
 
 
-def get_named_entities(prompt: str, response: str, pipe: Callable[[str], List[Dict[str, str]]]) -> Tuple[Set[str], Set[str]]:
+def get_named_entities(
+    prompt: str, response: str, pipe: Callable[[str], List[Dict[str, str]]]
+) -> Tuple[Set[str], Set[str]]:
     """
     Extract named entities from the prompt and response using the pipe function.
 
@@ -24,7 +26,9 @@ def get_named_entities(prompt: str, response: str, pipe: Callable[[str], List[Di
     return prompt_setNE, response_setNE
 
 
-def get_NER_score(prompt_setNE: Set[str], response_setNE: Set[str], creativeness: float = 0.3) -> float:
+def get_NER_score(
+    prompt_setNE: Set[str], response_setNE: Set[str], creativeness: float = 0.3
+) -> float:
     """
     Calculate the Named Entity Recognition (NER) score between the prompt and response.
 
@@ -68,11 +72,16 @@ def get_avg_std(text: str) -> Tuple[float, float]:
     # calculate the mean and std of the sentence lengths
     mean = sum([len(x) for x in sentences]) / len(sentences)
     std = sum([(len(x) - mean) ** 2 for x in sentences]) / len(sentences)
-    std = std ** 0.5
+    std = std**0.5
     return mean, std
 
 
-def evaluate_text(prompt: str, response: str, pipe: Callable[[str], List[Dict[str, str]]], creativeness: float = 0.3) -> Tuple[Dict[str, float], Set[str], Set[str]]:
+def evaluate_text(
+    prompt: str,
+    response: str,
+    pipe: Callable[[str], List[Dict[str, str]]],
+    creativeness: float = 0.3,
+) -> Tuple[Dict[str, float], Set[str], Set[str]]:
     """
     Evaluate the prompt and response text using Named Entity Recognition (NER) and sentence length.
 

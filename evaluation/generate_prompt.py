@@ -1,7 +1,9 @@
 from typing import List, Union
 
 
-def generate_prompt(text: str, prompt_max_len: int, RAW_TEXT: bool = False) -> Union[str, List[dict]]:
+def generate_prompt(
+    text: str, prompt_max_len: int, RAW_TEXT: bool = False
+) -> Union[str, List[dict]]:
     """
     Generate a prompt for the user to continue the story.
 

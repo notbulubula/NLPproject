@@ -34,7 +34,7 @@ class TestCalculateScores(unittest.TestCase):
         cls.pipe = pipeline("ner", model=cls.model, tokenizer=cls.tokenizer)
 
     def test_get_named_entities(self) -> None:
-        """ 
+        """
         Test the get_named_entities function.
         """
         prompt_NE, response_NE = get_named_entities(
@@ -99,14 +99,12 @@ class TestCalculateScores(unittest.TestCase):
         """
         Test the evaluate_text function.
         """
-        results_dict, prompt_NE, response_NE = evaluate_text(self.prompt, self.response, self.pipe)
+        results_dict, prompt_NE, response_NE = evaluate_text(
+            self.prompt, self.response, self.pipe
+        )
 
-        self.assertEqual(
-            prompt_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"}
-        )
-        self.assertEqual(
-            response_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"}
-        )
+        self.assertEqual(prompt_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"})
+        self.assertEqual(response_NE, {"Tom", "Manhattan", "Jerry", "Brooklyn"})
         self.assertEqual(round(results_dict["NER_score"], 2), 0.91)
         self.assertEqual(results_dict["prompt_mean"], 30.0)
         self.assertEqual(results_dict["prompt_std"], 1.0)

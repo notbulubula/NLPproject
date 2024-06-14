@@ -3,16 +3,18 @@ import json
 from typing import Any, List, Dict
 
 
-def get_dataset_rows(dataset: str, config: str, split: str, num_rows: int) -> List[Dict[str, Any]]:
+def get_dataset_rows(
+    dataset: str, config: str, split: str, num_rows: int
+) -> List[Dict[str, Any]]:
     """
     Get the first `num_rows` rows from a dataset split.
-    
+
     Args:
         dataset (str): The dataset name.
         config (str): The dataset configuration.
         split (str): The dataset split.
         num_rows (int): The number of rows to extract.
-        
+
     Returns:
         List[Dict[str, Any]]: The extracted rows.
     """
